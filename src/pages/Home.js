@@ -11,7 +11,7 @@ function Home(props) {
 	return (
 		<div
 			style={{
-				height: '100%',
+				minHeight: '100vh',
 				backgroundColor: '#FFCB38',
 				width: '100vw',
 				paddingTop: '5%',
@@ -72,14 +72,21 @@ function Home(props) {
 						name="https://media.tenor.com/EPB7uiDGlDwAAAAC/kbc-memes-7crore-meme.gif"
 						content="Yes"
 						color="green"
+						style={{ opacity: 0.9 }}
 						onClick={onClick}
 					/>
-
+					<Button
+						name="https://gifimage.net/wp-content/uploads/2018/11/devdas-gif-6.gif"
+						content="Maybe"
+						color="black"
+						style={{ marginLeft: 5, opacity: 0.9 }}
+						onClick={onClick}
+					/>
 					<Button
 						name="https://c.tenor.com/Bplyyy9lO7EAAAAC/chal-jhootha.gif"
 						content="No"
 						color="red"
-						style={{ marginLeft: 5 }}
+						style={{ marginLeft: 5, opacity: 0.9 }}
 						onClick={onClick}
 					/>
 				</div>
