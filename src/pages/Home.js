@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Image, Button, Card, Icon, Header } from 'semantic-ui-react';
 import vaish from '../images/vaishna.jpg';
+import useSound from 'use-sound';
+import laila from '../sounds/laila.mp3';
 
 function Home(props) {
 	const [gif, setGif] = useState('');
@@ -8,6 +10,9 @@ function Home(props) {
 	const onClick = (event, { name }) => {
 		setGif(name);
 	};
+
+	const [play, { pause }] = useSound(laila, { interrupt: true });
+
 	return (
 		<div
 			style={{
@@ -54,6 +59,45 @@ function Home(props) {
 						/>
 					</div>
 				</Card.Content>
+			</Card>
+			<Card raised centered style={{ paddingTop: 12, paddingBottom: 16 }}>
+				<div style={{ color: '#666666', marginBottom: 8 }}>
+					🎼 Listen when you're feeling..
+				</div>
+
+				<div
+					style={{
+						display: 'flex',
+						/* justifyContent: 'center', */
+						alignItems: 'center',
+						marginTop: 4,
+						/* backgroundColor: '#F0CE6D', */
+						padding: 8,
+						marginRight: 12,
+						marginLeft: 12,
+					}}
+				>
+					<Button
+						compact
+						icon="play"
+						floated="left"
+						/* content="Play" */
+						color="green"
+						style={{ opacity: 0.6 }}
+						onClick={play}
+					/>
+					{/* <Button
+						icon="pause"
+						floated="left"
+						
+						color="grey"
+						style={{ opacity: 0.6, marginRight: 10, marginLeft: 5 }}
+						onClick={() => pause()}
+					/> */}
+					<div style={{ color: '#555555', marginLeft: 5 }}>
+						Nostalgic <span style={{ marginLeft: 3 }}>👩‍❤️‍👨</span>
+					</div>
+				</div>
 			</Card>
 			<Card raised centered style={{ paddingTop: 12, paddingBottom: 16 }}>
 				<div style={{ color: '#666666', marginBottom: 8 }}>
