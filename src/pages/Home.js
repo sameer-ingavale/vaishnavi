@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, Button, Card, Icon, Header } from 'semantic-ui-react';
 import vaish from '../images/vaishna.jpg';
 import useSound from 'use-sound';
 import laila from '../sounds/laila.mp3';
 import mhn from '../sounds/mainHoonNa.mp3';
 import dhagala from '../sounds/dhagala.mp3';
-import chill from '../sounds/chill.mp3';
 
 function Home(props) {
 	const [gif, setGif] = useState('');
@@ -23,9 +22,12 @@ function Home(props) {
 	const [playDhagala, { pause: pauseDhagala }] = useSound(dhagala, {
 		interrupt: true,
 	});
-	const [playChill, { pause: pauseChill }] = useSound(chill, {
-		interrupt: true,
-	});
+
+	const songs = [
+		{ mood: 'Nostalgic', emoji: '💫', music: playLaila },
+		{ mood: 'Lonely', emoji: '🤗', music: playMhn },
+		{ mood: 'Horny', emoji: '💦', music: playDhagala },
+	];
 
 	return (
 		<div
@@ -39,6 +41,7 @@ function Home(props) {
 		>
 			<Card raised centered>
 				<Image src={vaish} wrapped ui={false} />
+				{/* <pre>{JSON.stringify(demo, 2, 2)}</pre> */}
 				<Card.Content>
 					<Card.Header>
 						Vaishnavi Nikam, 23
@@ -74,144 +77,41 @@ function Home(props) {
 					</div>
 				</Card.Content>
 			</Card>
-			<Card raised centered style={{ paddingTop: 12, paddingBottom: 16 }}>
+			{/* <Card raised centered style={{ paddingTop: 12, paddingBottom: 16 }}>
 				<div style={{ color: '#666666', marginBottom: 8 }}>
 					🎼 Listen when you're feeling..
 				</div>
-
-				<div
-					style={{
-						display: 'flex',
-						/* justifyContent: 'center', */
-						alignItems: 'center',
-						marginTop: 4,
-						/* backgroundColor: '#F0CE6D', */
-						padding: 8,
-						marginRight: 12,
-						marginLeft: 12,
-					}}
-				>
-					<Button
-						compact
-						icon="play"
-						floated="left"
-						/* content="Play" */
-						color="green"
-						style={{ opacity: 0.6 }}
-						onClick={() => {
-							pauseMhn();
-							pauseDhagala();
-							pauseChill();
-							playLaila();
+				{songs.map((song) => (
+					<div
+						style={{
+							display: 'flex',
+							
+							alignItems: 'center',
+							marginTop: 4,
+							
+							padding: 8,
+							marginRight: 12,
+							marginLeft: 12,
 						}}
-					/>
+					>
+						<Button
+							compact
+							icon="play"
+							floated="left"
+							
+							color="green"
+							style={{ opacity: 0.6 }}
+							onClick={() => {
+								song.music();
+							}}
+						/>
 
-					{/* <Button
-						icon="pause"
-						floated="left"
-						
-						color="grey"
-						style={{ opacity: 0.6, marginRight: 10, marginLeft: 5 }}
-						onClick={() => pause()}
-					/> */}
-					<div style={{ color: '#555555', marginLeft: 6 }}>
-						Nostalgic <span style={{ marginLeft: 3 }}> 💫</span>
+						<div style={{ color: '#555555', marginLeft: 6 }}>
+							{song.mood} <span style={{ marginLeft: 3 }}> {song.emoji}</span>
+						</div>
 					</div>
-				</div>
-				<div
-					style={{
-						display: 'flex',
-						/* justifyContent: 'center', */
-						alignItems: 'center',
-						marginTop: 4,
-						/* backgroundColor: '#F0CE6D', */
-						padding: 8,
-						marginRight: 12,
-						marginLeft: 12,
-					}}
-				>
-					<Button
-						compact
-						icon="play"
-						floated="left"
-						/* content="Play" */
-						color="green"
-						style={{ opacity: 0.6 }}
-						onClick={() => {
-							pauseLaila();
-							pauseDhagala();
-							pauseChill();
-							playMhn();
-						}}
-					/>
-
-					<div style={{ color: '#555555', marginLeft: 6 }}>
-						Lonely <span style={{ marginLeft: 3 }}>🤗</span>
-					</div>
-				</div>
-				<div
-					style={{
-						display: 'flex',
-						/* justifyContent: 'center', */
-						alignItems: 'center',
-						marginTop: 4,
-						/* backgroundColor: '#F0CE6D', */
-						padding: 8,
-						marginRight: 12,
-						marginLeft: 12,
-					}}
-				>
-					<Button
-						compact
-						icon="play"
-						floated="left"
-						/* content="Play" */
-						color="green"
-						style={{ opacity: 0.6 }}
-						onClick={() => {
-							pauseLaila();
-							pauseMhn();
-							pauseChill();
-							playDhagala();
-						}}
-					/>
-
-					<div style={{ color: '#555555', marginLeft: 6 }}>
-						Horny <span style={{ marginLeft: 3 }}>💦</span>
-					</div>
-				</div>
-				<div
-					style={{
-						display: 'flex',
-						/* justifyContent: 'center', */
-						alignItems: 'center',
-						marginTop: 4,
-						/* backgroundColor: '#F0CE6D', */
-						padding: 8,
-						marginRight: 12,
-						marginLeft: 12,
-					}}
-				>
-					<Button
-						compact
-						icon="play"
-						floated="left"
-						/* content="Play" */
-						color="green"
-						style={{ opacity: 0.6 }}
-						onClick={() => {
-							pauseLaila();
-							pauseMhn();
-							pauseDhagala();
-							playChill();
-						}}
-					/>
-
-					<div style={{ color: '#555555', marginLeft: 6 }}>
-						Angry <span style={{ marginLeft: 3 }}>😇</span>
-					</div>
-				</div>
-			</Card>
+				))}
+			</Card> */}
 			<Card raised centered style={{ paddingTop: 12, paddingBottom: 16 }}>
 				<div style={{ color: '#666666', marginBottom: 8 }}>
 					Does Vaish love Sameer?{'  '} 🤔
@@ -254,6 +154,26 @@ function Home(props) {
 					style={{ marginTop: 12, paddingRight: 8, paddingLeft: 8 }}
 				/>
 			</Card>
+			{/* <div className="test" id="test">
+				<iframe
+					width="298"
+					height="153"
+					src="https://w2.countingdownto.com/4473674"
+					frameborder="0"
+				/>
+			</div> */}
+			<div>
+				<Card raised centered style={{ paddingTop: 12, paddingBottom: 16 }}>
+					<div>Istanbul 🇹🇷</div>
+					<iframe
+						width="298"
+						height="100"
+						src="https://embed-countdown.onlinealarmkur.com/en/#2023-02-14T00:00:00@Africa%2FDar_es_Salaam"
+						frameborder="0"
+					/>
+					<div>February 14, 2023</div>
+				</Card>
+			</div>
 		</div>
 	);
 }
